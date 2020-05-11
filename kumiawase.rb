@@ -26,11 +26,11 @@ ateams.each.with_index(1).uniq do |ateam,i|
     print "#{ateam}が勝ったら0、#{bteam}が勝ったら1を入力:"
       game = gets.to_i
     if game == 0
-      puts "#{ateam}の勝ち"
+      print "#{ateam}の勝ち。"
       ateams_win_count += 1
       puts "#{ateam}のトータル#{ateams_win_count}勝です"
     elsif game == 1 
-      puts "#{bteam}が#{bteams_win_count}勝"
+      print "#{bteam}の勝ち。"
       bteams_win_count += 1
       puts "#{bteam}のトータル#{bteams_win_count}勝です"
     end
