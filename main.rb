@@ -12,8 +12,8 @@ w = "8:わ"
 menbers = [u,s,o,y,e,w]
 
 # 3人ずつ2チームに分ける(とりあえず例として1通りだけ)
-gu = menbers.first(3)
-pa = menbers.last(3)
+a_team = menbers.first(3)
+b_team = menbers.last(3)
 # 3人に分けた時の配列
 uso = [u,s,o]
 usk = [u,s,k]
@@ -38,9 +38,9 @@ twe_lose = 0
 allmenbers = [uso,usk,usy,usw,uoy,uoe,uow,yew,tye]
 
 
-# チーム毎の処理、全部書くのは厳しい。。。。
+# チーム毎の処理、113通り全部書くのは厳しい。。。。
 allmenbers.each do |menber|
-  if gu.sort == uso && pa.sort == yew
+  if a_team.sort == uso && b_team.sort == yew
     puts "#{uso}vs#{yew}!!"
     while true
       print "#{uso}が勝ったら0、#{yew}が勝ったら1を入力:"
@@ -71,7 +71,7 @@ allmenbers.each do |menber|
     end   
   end
   
-  if gu.sort == usk && pa.sort == twe
+  if a_team.sort == usk && b_team.sort == twe
     puts "#{usk}vs#{twe}!!"
     while true
       print "#{usk}が勝ったら0、#{twe}が勝ったら1を入力:"
@@ -103,3 +103,4 @@ puts <<~TEXT
  トータル、uso#{uso_win}勝、usk#{usk_win}勝、yew#{yew_win}勝、twe#{twe_win}勝
  トータル,uso#{uso_lose}負、usk#{usk_lose}負、yew#{yew_lose}負、twe#{twe_lose}負
 TEXT
+
