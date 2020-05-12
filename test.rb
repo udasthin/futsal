@@ -19,14 +19,8 @@ a_teams = teams.combination(3).to_a
 # 重複しないようリバースする
 
 # 相手チームに同じ人間が行かないようロジックを組む
-a_teams.each.with_index(1).uniq do |a_team,i|
-  b_team = teams - a_team
-  b_team_first = b_team.first(3)
-  b_team_midle = b_team[1..3]
-  b_team_last = b_team.last(3)
-  puts "NO.#{i}#{a_team}------VS--------#{b_team_first}"
-  puts "NO.#{i}#{a_team}------VS--------#{b_team_midle}"
-  puts "NO.#{i}#{a_team}------VS--------#{b_team_last}"
-
-end
+win = 0
+abc_count = 0
+abd_count = 0
+teams_count = 0
 
