@@ -9,7 +9,7 @@ e = "7:え"
 w = "8:わ"
 
 # メンバーの配列
-menbers = [u,s,o,y,e,w]
+menbers = [u,s,o,y,e,w,k,t]
 
 # 3人ずつ2チームに分ける(とりあえず例として1通りだけ)
 a_team = menbers.first(3)
