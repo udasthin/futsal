@@ -19,10 +19,10 @@ a_teams.each do |a_team|
   b_team_first = b_team.first(3)
   b_team_midle = b_team[1..3]
   b_team_last = b_team.last(3)
-  puts "NO.#{teams_count}#{a_team}------VS--------#{b_team_first}"
+  puts "NO.#{teams_count}#{a_team}------VS------#{b_team_first}"
   teams_count += 1
-  puts "NO.#{teams_count}#{a_team}------VS--------#{b_team_midle}"
+  puts "NO.#{teams_count}#{a_team}------VS------#{b_team_midle}"
   teams_count += 1
-  puts "NO.#{teams_count}#{a_team}------VS--------#{b_team_last}"
+  puts "NO.#{teams_count}#{a_team}------VS------#{b_team_last}"
   teams_count += 1
 end
