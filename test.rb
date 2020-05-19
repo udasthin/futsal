@@ -1,54 +1,107 @@
+# メンバーの名前の頭文字
+u = "1:う"
+s = "2:さ"
+o = "3:お"
+k = "4:け"
+t = "5:た"
+y = "6:よ"
+e = "7:え"
+w = "8:わ"
 
-# 名前
-A = "0:う"
-B = "1:さ"
-C = "2:お"
-D = "3:え"
-E = "4:よ"
-F = "5:わ"
-G = "6:け"
-H = "7:た"
-# グループ配列
-teams = [A,B,C,D,E,F,G,H]
-# 削除した文字列から引くための配列
-teamssub1 = [A,B,C,D,E,F,G,H]
-teamssub2 = [A,B,C,D,E,F,G,H]
-teamssub3 = [A,B,C,D,E,F,G,H]
+# メンバーの配列
+menbers = [u,s,o,y,e,w,k,t]
 
-puts "これから６人で二つのチームに分けますが8人いるので今回参加しない2人を外します。番号を入力してください"
+# 3人ずつ2チームに分ける(とりあえず例として1通りだけ)
+a_team = menbers.first(3)
+b_team = menbers.last(3)
+# 3人に分けた時の配列
+uso = [u,s,o]
+usk = [u,s,k]
+usy = [u,s,y]
+uoy = [u,o,y]
+usw = [u,s,w]
+uoe = [u,o,e]
+uow = [u,o,w]
+yow = [y,e,w]
+yew = [y,e,w]
+tye = [t,y,e]
+# チームの勝敗数
+uso_win = 0
+uso_lose = 0
+yew_win = 0
+yew_lose = 0
+usk_win = 0
+usk_lose = 0
+twe_win = 0
+twe_lose = 0
+# 3人に分けた配列の配列
+allmenbers = [uso,usk,usy,usw,uoy,uoe,uow,yew,tye]
 
-# メンバーは8人いますが3対3の6人でやるので2人を外します。
-puts "0：う、1：さ、2：お、3：え、4：よ、5：わ、6：け、7：た"
 
-# dnum = 削除した文字列delete_numのこと
-dnum = teamssub1.delete_at(gets.chomp.to_i)
+# チーム毎の処理、113通り全部書くのは厳しい。。。。
 
-# 番号を指定して外すメンバーを決める
+allmenbers.each do |menber|
+  if a_team.sort == uso && b_team.sort == yew
+    puts "#{uso}vs#{yew}!!"
+    while true
+      print "#{uso}が勝ったら0、#{yew}が勝ったら1を入力:"
+      result = gets.to_i
+      if result >= 2
+        puts "0か1を入力,やり直し"
+        next
+      end
+      break 
+    end
+    if result == 0
+      uso_win += 1
+      yew_lose += 1
+      puts <<~TEXT
+      #{uso}チームの勝ちで#{uso_win}勝
+      #{yew}のチーム負けで#{yew_lose}負
+      TEXT
+      break
+    else
+      puts "#{uso}の負け"
+      uso_lose += 1
+      yew_win += 1
+      puts <<~TEXT
+      #{yew}チームの勝ちで#{yew_win}勝
+      #{uso}のチーム負けで#{uso_lose}負
+      TEXT
+      break
+    end   
+  end
+  
+  if a_team.sort == usk && b_team.sort == twe
+    puts "#{usk}vs#{twe}!!"
+    while true
+      print "#{usk}が勝ったら0、#{twe}が勝ったら1を入力:"
+      result = gets.to_i
+      if result >= 2
+        puts "0か1を入力,やり直し"
+        next
+      end
+      break 
+    end
+    if result == 0
+      usk_win += 1
+      twe_lose += 1
+      puts "#{usk}チームの勝ちで#{usk_win}勝"
+      puts "#{twe}のチーム負けで#{twe_lose}負"
+      break
+    else
+      puts "#{usk}の負け"
+      usk_lose += 1
+      twe_win += 1
+      puts "#{twe}の勝ちで#{twe_win}勝"
+      puts "#{usk}の負けで#{usk_lose}負"
+      break
+    end   
+  end
+end
 
-puts <<~EOS
-#{dnum}を外します。
-もう1人選んでください。
-"0：う、1：さ、2：お、3：え、4：よ、5：わ、6：け、7：た"
-EOS
-dnum2 = teamssub2.delete_at(gets.to_i)
+puts <<~TEXT
+ トータル、uso#{uso_win}勝、usk#{usk_win}勝、yew#{yew_win}勝、twe#{twe_win}勝
+ トータル,uso#{uso_lose}負、usk#{usk_lose}負、yew#{yew_lose}負、twe#{twe_lose}負
+TEXT
 
-# delete num2のこと
-puts "#{dnum2}を外します。"
-puts " "
-# 外したメンバーを入れた配列
-dnums = [dnum,dnum2]
-# 配列teamsから外した二人を引く
-teams = teamssub3 - dnums
-puts "#{teams}でグーチーム、パーチームに分かれます。"
-
-teams.shuffle!
-teams_gu = teams.first(3)
-teams_pa = teams.last(3)
-teams_gu = teams_gu.sort
-teams_pa = teams_pa.sort
-puts <<~TEXT2
-#{teams_gu}はグーチーム、
-#{teams_pa}はパーチームです
-TEXT2
-puts "3人ずつに分かれました、チームメイトを確認し試合を開始してください。"
-puts "----------------------------------"
